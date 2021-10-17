@@ -7,8 +7,10 @@ Coleta de dados meteorológicas das estações INMET.
 ## :world_map: Conteúdo
 
 1. [O que faz](#sparkles-o-que-faz)  
-2. [Pré-requisitos](#scroll-documentação)
-3. [Como instalar](#construction-desenvolvimento)
+2. [Documentação](#scroll-documentação)
+3. [Desenvolvimento](#construction-desenvolvimento)
+   1. [Preparação do ambiente](#preparação-do-ambiente)
+   2. [Testes](#testes)
 
 ## :sparkles: O que faz
 
@@ -30,11 +32,11 @@ shell> cd inmet-julia
 pkg> activate .
 
 # 2. instale e pré-compile as dependências do projeto
-pkg> instantiate
-pkg> precompile
+(inmet) pkg> instantiate
+(inmet) pkg> precompile
 ```
 
-### Como rodar os testes
+### Testes
 
 Com o ambiente do projeto ativo, execute:
 
