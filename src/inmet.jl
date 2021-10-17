@@ -61,13 +61,9 @@ function coletarDadosEstacao(
         dataInicial::Dates.Date,
         dataFinal::Dates.Date
 )::DataFrame
-    # coletarDadosEstacao("A225", dataInicial, dataFinal)
-    
     urlBaseDadosEstacoes = "https://apitempo.inmet.gov.br/estacao"
     urlQueryDadosEstacoes = "$(dataInicial)/$(dataFinal)/$(codigoEstacao)"
     urlCompleta = "$(urlBaseDadosEstacoes)/$(urlQueryDadosEstacoes)"
-    
-    # println(urlCompleta)
 
     serieEstacaoJSON = chamarAPI(urlCompleta)
     serieEstacao = DataFrame(serieEstacaoJSON)
@@ -96,22 +92,22 @@ julia> formato = Dates.DateFormat("y-m-d")
 julia> dataInicial = Dates.Date("2021-01-01", formato)
 julia> dataFinal = Dates.Date("2021-01-02", formato)
 julia> coletarDadosEstacoesCSV(
-    ["A756", "A255"], dados_estacoes", dataInicial, dataFinal
+    ["A756", "A223"], dados_estacoes", dataInicial, dataFinal
 )
 ```
 """
 function coletarDadosEstacoesCSV(
-    codigosEstacoes::Array{String},
-    diretorioPersistencia::String,
     dataInicial::Dates.Date,
-    dataFinal::Dates.Date
+    dataFinal::Dates.Date,
+    diretorioPersistencia::String,
+    codigosEstacoes::Union{Vector, Nothing} = nothing,
 )
 
     if !Base.isdir(diretorioPersistencia)
         Base.mkpath(diretorioPersistencia)
     end
 
-    if !codigosEstacoes
+    if codigosEstacoes === nothing
         codigosEstacoes = listarEstacoes(true)
     end
 
